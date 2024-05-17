@@ -6,7 +6,6 @@
 #ifndef THREADPOOL_H
 #define THREADPOOL_H
 
-// #include <vector>
 #include <queue>
 #include <thread>
 #include <functional>
@@ -37,4 +36,4 @@ class ThreadPool {
         void addTask(F&& task);
 };
 
-#endif
+#endif //THREADPOOL_H
