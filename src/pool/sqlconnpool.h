@@ -13,17 +13,17 @@
 
 
 class SqlConnPool {
-    private:
-        std::queue<MYSQL*> connQueue; // database queue
-        std::mutex mtx;
-        sem_t sem;
+private:
+    std::queue<MYSQL*> connQueue; // database queue
+    std::mutex mtx;
+    sem_t sem;
 
-        int MAXCONN;
-        int useCount;
-        int freeCount;
+    int MAXCONN;
+    int useCount;
+    int freeCount;
 
-        SqlConnPool();
-        ~SqlConnPool();
+    SqlConnPool();
+    ~SqlConnPool();
 
 };
 

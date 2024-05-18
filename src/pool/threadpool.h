@@ -13,27 +13,27 @@
 #include <condition_variable>
 
 class ThreadPool {
-    private:
-        struct Pool{
-            bool isClose; // thread pool is closed or not
-            std::mutex mtx; // mutex for the thread pool
-            std::condition_variable cond; // condition variable for the thread pool
-            std::queue<std::function<void()>> tasks; // task queue
-        };
+private:
+    struct Pool{
+        bool isClose; // thread pool is closed or not
+        std::mutex mtx; // mutex for the thread pool
+        std::condition_variable cond; // condition variable for the thread pool
+        std::queue<std::function<void()>> tasks; // task queue
+    };
 
-        std::shared_ptr<Pool> pool;
+    std::shared_ptr<Pool> pool;
 
-    public:
-        ThreadPool() = default;
+public:
+    ThreadPool() = default;
 
-        explicit ThreadPool(size_t threadNum = 8);
+    explicit ThreadPool(size_t threadNum = 8);
 
-        ThreadPool(ThreadPool&&) = default;
+    ThreadPool(ThreadPool&&) = default;
 
-        ~ThreadPool();
+    ~ThreadPool();
 
-        template<class F>
-        void addTask(F&& task);
+    template<class F>
+    void addTask(F&& task);
 };
 
 #endif //THREADPOOL_H
