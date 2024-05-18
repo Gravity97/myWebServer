@@ -7,7 +7,7 @@
 #define LOG_H
 
 class Log {
-    
+
 
 };
 
