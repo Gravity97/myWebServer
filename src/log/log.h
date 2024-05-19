@@ -32,7 +32,7 @@ private:
 
     Buffer buffer;
     int level;
-    bool isAsync;
+    bool isAsync; // if log is async, we will have a new thread to process log
 
     FILE* fp;
     std::unique_ptr<BlockDeque<std::string>> deque_;
@@ -46,6 +46,7 @@ public:
     Log& operator=(const Log&) = delete;
 
     void init(int level = 1, const char* path, const char* suffix, int maxDequeSize);
+    void flush();
 };
 
 Log Log::instance;
