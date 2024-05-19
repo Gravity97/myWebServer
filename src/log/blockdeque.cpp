@@ -6,6 +6,14 @@
 #include "blockdeque.h"
 #include <assert.h>
 
+#define BLOCK_DEQUE_FUNC_DEFINE(FUNC, ...) \
+    template <class T> \
+    auto BlockDeque<T>::FUNC(__VA_ARGS__) -> decltype(deque_.FUNC(__VA_ARGS__)) const\
+    { \
+        std::lock_guard<std::mutex> locker(mtx); \
+        return deque_.FUNC(__VA_ARGS__); \
+    }
+
 template<class T>
 BlockDeque<T>::BlockDeque(int maxCapacity) : capacity_(maxCapacity)
 {
