@@ -4,6 +4,7 @@
 */
 
 #include "log.h"
+#include <sys/stat.h>
 
 Log::Log()
 {
@@ -46,7 +47,22 @@ void Log::init(int level, const char* path, const char* suffix, int maxDequeSize
         std::lock_guard<std::mutex> locker(mtx);
         buffer.RetrieveAll();
         if(fp) {
-            
+            flush();
+            fclose(fp);
+        }
+
+        fp = fopen(filename, "a");
+        if(fp == nullptr) {
+            mkdir(path, 0777);
+            fp = fopen(filename, "a");
         }
     }
+}
+
+void Log::flush()
+{
+    if(isAsync) {
+        deque_->flush();
+    }
+    fflush(fp);
 }
