@@ -3,8 +3,8 @@
  * @date: 2024-5-16
 */
 
-#ifndef SQLCONNPOOL_H
-#define SQLCONNPOOL_H
+#ifndef SQLCONNPOOL_HPP
+#define SQLCONNPOOL_HPP
 
 #include <mysql/mysql.h>
 #include <queue>
@@ -27,4 +27,4 @@ private:
 
 };
 
-#endif
+#endif //SQLCONNPOOL_HPP

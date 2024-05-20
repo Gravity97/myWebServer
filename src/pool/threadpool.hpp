@@ -3,8 +3,8 @@
  * @date: 2024-5-11
 */
 
-#ifndef THREADPOOL_H
-#define THREADPOOL_H
+#ifndef THREADPOOL_HPP
+#define THREADPOOL_HPP
 
 #include <queue>
 #include <thread>
@@ -36,4 +36,4 @@ public:
     void addTask(F&& task);
 };
 
-#endif //THREADPOOL_H
+#endif //THREADPOOL_HPP

@@ -3,8 +3,8 @@
  * @date: 2024-5-16
 */
 
-#ifndef BUFFER_H
-#define BUFFER_H
+#ifndef BUFFER_HPP
+#define BUFFER_HPP
 
 #include <vector>
 #include <atomic>
@@ -46,4 +46,4 @@ public:
     ssize_t WriteIntoFd(int fd, int* errno_); // read data into file
 };
 
-#endif //BUFFER_H
+#endif //BUFFER_HPP

@@ -3,8 +3,8 @@
  * @date: 2024-5-18
 */
 
-#ifndef LOG_H
-#define LOG_H
+#ifndef LOG_HPP
+#define LOG_HPP
 
 #include "../buffer/buffer.hpp"
 #include <memory>
@@ -75,4 +75,4 @@ public:
 #define LOG_WARN(format, ...) do{LOG_BASE(2, format, ##__VA_ARGS__)} while(0);
 #define LOG_ERROR(format, ...) do{LOG_BASE(3, format, ##__VA_ARGS__)} while(0);
 
-#endif // LOG_H
+#endif // LOG_HPP
