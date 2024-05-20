@@ -3,7 +3,7 @@
  * @date: 2024-5-17
 */
 
-#include "buffer.h"
+#include "buffer.hpp"
 #include <assert.h>
 #include <cstring>
 #include <sys/uio.h>
@@ -41,7 +41,7 @@ const char* Buffer::ReadPosition() const
     return buffer.data() + readPos;
 }
 
-const char* Buffer::WritePosition() const
+char* Buffer::WritePosition()
 {
     return buffer.data() + writePos;
 }
@@ -85,7 +85,7 @@ void Buffer::RetrieveAll()
 
 std::string Buffer::RetrieveAllToStr()
 {
-    std::string str(ReadPosition(), WritePosition());
+    std::string str(ReadPosition(), WritableBytes());
     RetrieveAll();
     return str;
 }

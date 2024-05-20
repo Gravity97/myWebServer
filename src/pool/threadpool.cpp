@@ -4,7 +4,7 @@
 */
 
 #include <assert.h>
-#include "threadpool.h"
+#include "threadpool.hpp"
 
 ThreadPool::ThreadPool(size_t threadNum) : pool(std::make_shared<Pool>())
 {
