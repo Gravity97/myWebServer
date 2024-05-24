@@ -36,4 +36,15 @@ public:
     void addTask(F&& task);
 };
 
+template<class F>
+void ThreadPool::addTask(F&& task)
+{
+    {
+        std::lock_guard<std::mutex> locker(pool->mtx);
+        pool->tasks.emplace(std::forward<F>(task));
+        // pool->tasks.emplace(std::forward(task));
+    }
+    pool->cond.notify_all();
+}
+
 #endif //THREADPOOL_HPP

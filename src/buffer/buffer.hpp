@@ -16,7 +16,6 @@ private:
     std::atomic<std::size_t> readPos; // point to read position(all read before)
     std::atomic<std::size_t> writePos; // point to write position(all written before)
 
-    const char* ReadPosition() const; // position for read pointer
     char* WritePosition(); // position for write pointer
     void EnsureWritable(std::size_t len); // make sure the write space
     void HasRead(std::size_t len); // note the bytes that has read
@@ -31,6 +30,9 @@ public:
     std::size_t WritableBytes() const;
     std::size_t ReadableBytes() const;
     std::size_t PreinsertableBytes() const;
+
+    const char* ReadPosition() const; // position for read pointer
+    const char* WritePositionConst() const; // position for write pointer
 
     void Retrieve(std::size_t len); // get readable data
     void RetrieveUntil(const char* end);

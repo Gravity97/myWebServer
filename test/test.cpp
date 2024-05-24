@@ -43,16 +43,16 @@ void ThreadLogTask(int i, int cnt) {
     }
 }
 
-// void TestThreadPool() {
-//     Log::Instance().init(0, "./testThreadpool", ".log", 5000);
-//     ThreadPool threadpool(6);
-//     for(int i = 0; i < 18; i++) {
-//         threadpool.addTask(std::bind(ThreadLogTask, i % 4, i * 10000));
-//     }
-//     getchar();
-// }
+void TestThreadPool() {
+    Log::Instance().init(0, "./testThreadpool", ".log", 5000);
+    ThreadPool threadpool(6);
+    for(int i = 0; i < 18; i++) {
+        threadpool.addTask(std::bind(ThreadLogTask, i % 4, i * 10000));
+    }
+    getchar();
+}
 
 int main() {
     TestLog();
-    // TestThreadPool();
+    TestThreadPool();
 }

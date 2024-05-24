@@ -9,6 +9,7 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include "../buffer/buffer.hpp"
 
 class HttpRequest {
 private:
@@ -17,6 +18,7 @@ private:
         HEADER,
         EMPTY_LINE,
         BODY,
+        FINISH,
     };
 
     enum HTTP_CODE {
@@ -31,8 +33,8 @@ private:
     };
 
     PARSE_STATE state;
-    std::string method, path, version, body;
-    std::unordered_map<std::string, std::string> head;
+    std::string method_, path_, version_, body_;
+    std::unordered_map<std::string, std::string> header;
     std::unordered_map<std::string, std::string> post;
 
     static const std::unordered_set<std::string> DEFAULT_HTML;
@@ -43,10 +45,24 @@ private:
     void ParseBody(const std::string& line);
     void ParsePath();
     void ParsePost();
+    void ParseEncodedURL();
+
+    int ConvertHexToDec(char ch); // convert URL encoding to normal data
 
 public:
     HttpRequest();
     ~HttpRequest() = default;
+
+    bool parse(Buffer& buffer);
+
+    std::string path() const;
+    std::string& path();
+    std::string method() const;
+    std::string version() const;
+    std::string GetPost(const std::string& key) const;
+    std::string GetPost(const char* key) const;
+
+    bool IsKeepAlive() const;
 };
 
 #endif //HTTPREQUEST_HPP

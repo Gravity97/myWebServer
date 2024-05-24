@@ -41,6 +41,11 @@ const char* Buffer::ReadPosition() const
     return buffer.data() + readPos;
 }
 
+const char * Buffer::WritePositionConst() const
+{
+    return buffer.data() + writePos;
+}
+
 char* Buffer::WritePosition()
 {
     return buffer.data() + writePos;
